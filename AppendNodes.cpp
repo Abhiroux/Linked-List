@@ -38,33 +38,28 @@ void Display(Node *p){
 
 Node* AppendNodes(Node* headRef,int k){
     Node* temp=headRef;
-    Node* NewHead=new Node;
+    Node* NewHead;
+    Node* NewTail;
     int count=0;
     while (temp->next!=NULL)
     {
         count++;
         if(count==k){
+            NewTail=temp;
             NewHead=temp->next;
-            temp->next=NULL;
         }
         temp=temp->next;
     }
-    Node* &t=NewHead;
-    while (t->next!=NULL)
-    {
-        t=t->next;
-    }
-    t->next=headRef;
-
+    NewTail->next=NULL;
+    temp->next=headRef;
     return NewHead;
-    
-    
 }
 
 int main(){
     Node* head = createLL();
     Display(head);
     head = AppendNodes(head,3);
+    cout<<"\nAfter Append"<<endl;
     Display(head);
     return 0;
 }
